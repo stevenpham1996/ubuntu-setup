@@ -202,12 +202,14 @@ echo 'installing Postman'
 snap install postman
 
 echo 'installing vlc'
-sudo apt install vlc 
-sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2
+sudo apt install vlc -y
+sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2 -y
 
 echo 'installing transmission'
 sudo add-apt-repository ppa:transmissionbt/ppa
 sudo apt-get update
-sudo apt-get install transmission transmission-qt
+sudo apt-get install transmission transmission-qt -y
+
+clear 
 
 echo 'All setup, enjoy!'
