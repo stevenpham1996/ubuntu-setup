@@ -169,6 +169,13 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
+echo 'installing kubectl'
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+echo 'installing heroku-cli'
+curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+heroku --version
+
 echo 'installing aws-cli' 
 sudo apt-get install awscli -y
 aws --version
