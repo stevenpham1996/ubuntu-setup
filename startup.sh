@@ -1,19 +1,25 @@
+echo "Welcome! Let's start setting up your system xD It could take more than 10 minutes, be patient"
+
 sudo apt-get update
 
 echo 'installing curl' 
 sudo apt install curl -y
 
+echo 'installing vim'
+sudo apt install vim -y
+clear
+
 echo 'installing git' 
 sudo apt install git -y
 
 echo "What name do you want to use in GIT user.name?"
-echo "For example, mine will be \"Erick Wendel\""
+echo "For example, mine will be \"Olavio Lacerda\""
 read git_config_user_name
 git config --global user.name "$git_config_user_name"
 clear 
 
 echo "What email do you want to use in GIT user.email?"
-echo "For example, mine will be \"erick.workspace@gmail.com\""
+echo "For example, mine will be \"olavio.lacerda@hotmail.com\""
 read git_config_user_email
 git config --global user.email $git_config_user_email
 clear
@@ -46,10 +52,6 @@ export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
-echo 'installing vim'
-sudo apt install vim -y
-clear
-
 echo 'installing code'
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -59,15 +61,7 @@ sudo apt-get update
 sudo apt-get install code -y # or code-insiders
 
 echo 'installing extensions'
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension christian-kohler.path-intellisense
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension dracula-theme.theme-dracula
-code --install-extension esbenp.prettier-vscode
-code --install-extension foxundermoon.shell-format
-code --install-extension pmneo.tsimporter
-code --install-extension waderyan.gitblame
-code --install-extension yzhang.markdown-all-in-one
+code --install-extension Shan.code-settings-sync
 
 echo 'installing spotify' 
 snap install spotify
@@ -105,14 +99,10 @@ sudo apt install fonts-firacode -y
 wget -O ~/.oh-my-zsh/themes/node.zsh-theme https://raw.githubusercontent.com/skuridin/oh-my-zsh-node-theme/master/node.zsh-theme 
 sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="node"/g' ~/.zshrc
 
-echo 'installing meet franz' 
+echo 'installing franz' 
 wget https://github.com/meetfranz/franz/releases/download/v5.1.0/franz_5.1.0_amd64.deb -O franz.deb
 sudo dpkg -i franz.debchristian-kohler.path-intellisense
 sudo apt-get install -y -f 
-
-echo 'installing slack' 
-wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb
-sudo apt install ./slack-desktop-*.deb -y
 
 echo 'installing terminator'
 sudo apt-get update
@@ -186,26 +176,36 @@ curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64
 sudo dpkg -i session-manager-plugin.deb
 session-manager-plugin --version
 
-echo 'installing teamviewer'
-wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-sudo apt install -y ./teamviewer_amd64.deb
-
-echo 'installing vnc-viewer'
-sudo apt-get install -y --no-install-recommends ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
-sudo apt-get install vnc4server -y 
-
 echo 'installing fzf'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
-
-echo 'installing brave'
-curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-source /etc/os-release
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
-sudo apt update
-sudo apt install brave-keyring brave-browser
 
 echo 'installing dbeaver'
 wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
 sudo dpkg -i dbeaver-ce_6.0.0_amd64.deb
 sudo apt-get install -f
+
+echo 'installing insomnia'
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install insomnia
+
+echo 'installing skype'
+echo "deb [arch=amd64] https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skype-stable.list
+wget https://repo.skype.com/data/SKYPE-GPG-KEY
+sudo apt-key add SKYPE-GPG-KEY
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install skypeforlinux
+
+echo 'installing vlc'
+sudo apt install vlc 
+sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2
+
+echo 'installing transmission'
+sudo add-apt-repository ppa:transmissionbt/ppa
+sudo apt-get update
+sudo apt-get install transmission transmission-qt
+
+echo 'All setup, enjoy!'
