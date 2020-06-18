@@ -28,8 +28,7 @@ sh startup.sh
 * [Docker Compose](https://docs.docker.com/compose/) - Tool for defining and running multi-container Docker applications
 * [Fzf](https://github.com/junegunn/fzf) - General-purpose command-line fuzzy finder
 * [DBeaver](https://dbeaver.io/) - Universal DB tool
-* [Insomnia](https://insomnia.rest/) - REST and GraphQL client
-* [Skype](https://www.skype.com/) - You know what Skype is
+* [Postman](https://www.postman.com/) - API Client
 * [VLC](https://www.videolan.org/vlc/) - Media player
 * [Transmission](https://transmissionbt.com/) - Torrent client
 * [Kubernetes CLI](https://kubernetes.io/docs/reference/kubectl/overview/) - CLI to control Kubernetes clusters
