@@ -198,19 +198,8 @@ wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
 sudo dpkg -i dbeaver-ce_6.0.0_amd64.deb
 sudo apt-get install -f
 
-echo 'installing insomnia'
-echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install insomnia
-
-echo 'installing skype'
-echo "deb [arch=amd64] https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skype-stable.list
-wget https://repo.skype.com/data/SKYPE-GPG-KEY
-sudo apt-key add SKYPE-GPG-KEY
-sudo apt install apt-transport-https
-sudo apt update
-sudo apt install skypeforlinux
+echo 'installing Postman' 
+snap install postman
 
 echo 'installing vlc'
 sudo apt install vlc 
