@@ -89,6 +89,9 @@ nvm alias default 12
 node --version
 npm --version
 
+echo 'installing Typescript'
+npm install -g typescript
+
 echo 'installing autosuggestions' 
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc

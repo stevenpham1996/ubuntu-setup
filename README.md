@@ -36,6 +36,7 @@ sh startup.sh
 * [AWS CLI](https://aws.amazon.com/pt/cli/) - CLI to control AWS services
 * [Heroku CLI](https://devcenter.heroku.com/categories/command-line) - Create and manage your Heroku apps
 * [Fira Code](https://github.com/tonsky/FiraCode) - Monospaced font with programming ligatures
+* [Typescript](https://www.typescriptlang.org/) - Typed superset of JavaScript that compiles to plain JavaScript.
 
 
 ## Authors
