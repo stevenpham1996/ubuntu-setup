@@ -92,6 +92,9 @@ npm --version
 echo 'installing Typescript'
 npm install -g typescript
 
+echo 'installing Create React App'
+npm install -g create-react-app
+
 echo 'installing autosuggestions' 
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc

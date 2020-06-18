@@ -37,6 +37,7 @@ sh startup.sh
 * [Heroku CLI](https://devcenter.heroku.com/categories/command-line) - Create and manage your Heroku apps
 * [Fira Code](https://github.com/tonsky/FiraCode) - Monospaced font with programming ligatures
 * [Typescript](https://www.typescriptlang.org/) - Typed superset of JavaScript that compiles to plain JavaScript.
+* [Create React App](https://github.com/facebook/create-react-app) - Set up a modern ReactJS web app by running one command
 
 
 ## Authors
