@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Welcome! Let's start setting up your system xD It could take more than 10 minutes, be patient"
 
 sudo apt-get update
@@ -192,6 +194,7 @@ session-manager-plugin --version
 echo 'installing fzf'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
+source ~/.zshrc
 
 echo 'installing dbeaver'
 wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
@@ -212,6 +215,12 @@ echo 'installing transmission'
 sudo add-apt-repository ppa:transmissionbt/ppa
 sudo apt-get update
 sudo apt-get install transmission transmission-qt -y
+
+echo 'commiting changes'
+source ~/.zshrc
+sudo dpkg --configure -a 
+sudo apt-get update --fix-missing
+sudo apt-get autoremove
 
 clear 
 
