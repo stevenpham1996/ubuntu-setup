@@ -10,7 +10,7 @@ Just clone this repo or download and execute
 sh startup.sh
 ```
 
-## You'll be stalling...
+## You'll be installing...
 
 * [Curl](https://curl.haxx.se/) - Command line tool and library for transferring data with URLs
 * [Git](https://git-scm.com/) - Free and open source distributed version control system
