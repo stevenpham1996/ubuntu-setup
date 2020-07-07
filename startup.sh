@@ -218,6 +218,9 @@ sudo add-apt-repository ppa:transmissionbt/ppa
 sudo apt-get update
 sudo apt-get install transmission transmission-qt -y
 
+echo 'installing Redocs'
+sudo npm install -g @redocly/openapi-cli
+
 echo 'commiting changes'
 source ~/.zshrc
 sudo dpkg --configure -a 
