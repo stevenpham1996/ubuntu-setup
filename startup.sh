@@ -73,7 +73,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 echo 'installing nvm' 
-sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
+sh -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash)"
 
 export NVM_DIR="$HOME/.nvm" && (
 git clone https://github.com/creationix/nvm.git "$NVM_DIR"
@@ -88,16 +88,13 @@ echo '\nexport NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nv
 
 source ~/.zshrc
 nvm --version
-nvm install 12
-nvm alias default 12
+nvm install 16
+nvm alias default 16
 node --version
 npm --version
 
 echo 'installing Typescript'
 npm install -g typescript
-
-echo 'installing Create React App'
-npm install -g create-react-app
 
 echo 'installing autosuggestions' 
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
@@ -179,20 +176,6 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
-echo 'installing kubectl'
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-
-echo 'installing heroku-cli'
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-heroku --version
-
-echo 'installing aws-cli' 
-sudo apt-get install awscli -y
-aws --version
-curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
-sudo dpkg -i session-manager-plugin.deb
-session-manager-plugin --version
-
 echo 'installing fzf'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
@@ -203,23 +186,23 @@ wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
 sudo dpkg -i dbeaver-ce_6.0.0_amd64.deb
 sudo apt-get install -f
 
-echo 'installing Robo3t'
-snap install robo3t-snap
-
 echo 'installing Postman' 
 snap install postman
 
-echo 'installing vlc'
-sudo apt install vlc -y
-sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2 -y
-
-echo 'installing transmission'
-sudo add-apt-repository ppa:transmissionbt/ppa
-sudo apt-get update
-sudo apt-get install transmission transmission-qt -y
-
 echo 'installing Redocs'
 sudo npm install -g @redocly/openapi-cli
+
+echo 'installing Golang'
+wget -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+shasum -a 256 go1.16.3.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+go version
+sudo mkdir ~/go
+sudo cat <<EOF >> ~/.zshrc
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+EOF
 
 echo 'commiting changes'
 source ~/.zshrc
@@ -229,4 +212,37 @@ sudo apt-get autoremove
 
 clear 
 
-echo 'All setup, enjoy!'
+echo 'Do you wanna install extra content? (y/N)'
+read extra_content
+if echo "$extra_content" | grep -iq "^y" ;then
+	echo 'installing vlc'
+  sudo apt install vlc -y
+  sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2 -y
+
+  echo 'installing transmission'
+  sudo add-apt-repository ppa:transmissionbt/ppa
+  sudo apt-get update
+  sudo apt-get install transmission transmission-qt -y
+
+  echo 'installing Robo3t'
+  snap install robo3t-snap
+
+  echo 'installing kubectl'
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+  echo 'installing heroku-cli'
+  curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  heroku --version
+
+  echo 'installing aws-cli' 
+  sudo apt-get install awscli -y
+  aws --version
+  curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+  sudo dpkg -i session-manager-plugin.deb
+  session-manager-plugin --version
+else
+	echo "Okay, no problem. :) Let's finish it then!"
+fi
+
+
+echo 'All tools successfully installed. You are ready to shine :).'
