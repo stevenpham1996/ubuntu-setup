@@ -2,7 +2,12 @@
 
 echo "Welcome! Let's start setting up your system xD It could take more than 10 minutes, be patient"
 
-sudo apt-get update
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install build-essential -y
+
+echo 'installing wget'
+sudo apt install gdebi-core wget
 
 echo 'installing curl' 
 sudo apt install curl -y
@@ -107,15 +112,21 @@ wget -O ~/.oh-my-zsh/themes/node.zsh-theme https://raw.githubusercontent.com/sku
 sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="node"/g' ~/.zshrc
 
 echo 'installing franz' 
-wget https://github.com/meetfranz/franz/releases/download/v5.1.0/franz_5.1.0_amd64.deb -O franz.deb
-sudo dpkg -i franz.debchristian-kohler.path-intellisense
-sudo apt-get install -y -f 
+sudo apt-get update
+sudo apt-get install com.meetfranz.meetfranz
+
+echo 'installing discord'
+sudo apt-get update
+wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo gdebi ~/discord.deb -y
 
 echo 'installing terminator'
 sudo apt-get update
 sudo apt-get install terminator -y
 
-echo 'adding dracula theme' 
+echo 'adding dracula theme'
+mkdir ~/.config/terminator
+touch ~/.config/terminator/config
 cat <<EOF >  ~/.config/terminator/config
 [global_config]
   title_transmit_bg_color = "#ad7fa8"
@@ -209,6 +220,7 @@ source ~/.zshrc
 sudo dpkg --configure -a 
 sudo apt-get update --fix-missing
 sudo apt-get autoremove
+rm -rf = bash_completion Close Compressing discord.deb Downloading nvm 
 
 clear 
 
@@ -243,6 +255,7 @@ if echo "$extra_content" | grep -iq "^y" ;then
 else
 	echo "Okay, no problem. :) Let's finish it then!"
 fi
+
 
 
 echo 'All tools successfully installed. You are ready to shine :).'
