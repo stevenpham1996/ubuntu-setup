@@ -203,18 +203,6 @@ snap install postman
 echo 'installing Redocs'
 sudo npm install -g @redocly/openapi-cli
 
-echo 'installing Golang'
-wget -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-shasum -a 256 go1.16.3.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-go version
-sudo mkdir ~/go
-sudo cat <<EOF >> ~/.zshrc
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-EOF
-
 echo 'commiting changes'
 source ~/.zshrc
 sudo dpkg --configure -a 
