@@ -12,6 +12,9 @@ sudo apt install gdebi-core wget
 echo 'installing curl' 
 sudo apt install curl -y
 
+echo 'installing StarShip'
+curl -sS https://starship.rs/install.sh | sh
+
 echo 'installing vim'
 sudo apt install vim -y
 clear
