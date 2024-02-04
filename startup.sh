@@ -6,61 +6,32 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install build-essential -y
 
+# set double-click windo cascading
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-overview'
+
 echo 'installing wget'
 sudo apt install gdebi-core wget
 
 echo 'installing curl' 
 sudo apt install curl -y
 
-echo 'installing StarShip'
-curl -sS https://starship.rs/install.sh | sh
-
 echo 'installing vim'
 sudo apt install vim -y
 clear
 
-echo 'installing git' 
-sudo apt install git -y
-
-echo "What name do you want to use in GIT user.name?"
-echo "For example, mine will be \"Olavio Lacerda\""
-read git_config_user_name
-git config --global user.name "$git_config_user_name"
-clear 
-
-echo "What email do you want to use in GIT user.email?"
-echo "For example, mine will be \"olavio.lacerda@hotmail.com\""
-read git_config_user_email
-git config --global user.email $git_config_user_email
-clear
-
-echo "Can I set VIM as your default GIT editor for you? (y/n)"
-read git_core_editor_to_vim
-if echo "$git_core_editor_to_vim" | grep -iq "^y" ;then
-	git config --global core.editor vim
-else
-	echo "Okay, no problem. :) Let's move on!"
-fi
-
-echo "Generating a SSH Key"
-ssh-keygen -t rsa -b 4096 -C $git_config_user_email
-ssh-add ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+echo 'installing transmission'
+sudo apt install transmission
 
 echo 'enabling workspaces for both screens' 
 gsettings set org.gnome.mutter workspaces-only-on-primary false
 
-echo 'installing zsh'
-sudo apt-get install zsh -y
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-chsh -s /bin/zsh
 
 echo 'installing tool to handle clipboard via CLI'
 sudo apt-get install xclip -y
 
 export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
-source ~/.zshrc
+source ~/.bashrc
 
 echo 'installing code'
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -94,7 +65,7 @@ echo '\nexport PATH=/usr/local/share/npm/bin:$PATH\n'
 echo '\nexport NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"\n' >> .zshrc
 
-source ~/.zshrc
+source ~/.bashrc
 nvm --version
 nvm install 16
 nvm alias default 16
@@ -104,15 +75,6 @@ npm --version
 echo 'installing Typescript'
 npm install -g typescript
 
-echo 'installing autosuggestions' 
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-source ~/.zshrc
-
-echo 'installing theme'
-sudo apt install fonts-firacode -y
-wget -O ~/.oh-my-zsh/themes/node.zsh-theme https://raw.githubusercontent.com/skuridin/oh-my-zsh-node-theme/master/node.zsh-theme 
-sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="node"/g' ~/.zshrc
 
 echo 'installing franz' 
 sudo apt-get update
@@ -122,10 +84,6 @@ echo 'installing discord'
 sudo apt-get update
 wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo gdebi ~/discord.deb -y
-
-echo 'installing terminator'
-sudo apt-get update
-sudo apt-get install terminator -y
 
 echo 'adding dracula theme'
 mkdir ~/.config/terminator
@@ -204,7 +162,7 @@ sudo docker run hello-world
 echo 'installing fzf'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
-source ~/.zshrc
+source ~/.bashrc
 
 echo 'installing dbeaver'
 wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
@@ -218,7 +176,7 @@ echo 'installing Redocs'
 sudo npm install -g @redocly/openapi-cli
 
 echo 'commiting changes'
-source ~/.zshrc
+source ~/.bashrc
 sudo dpkg --configure -a 
 sudo apt-get update --fix-missing
 sudo apt-get autoremove
